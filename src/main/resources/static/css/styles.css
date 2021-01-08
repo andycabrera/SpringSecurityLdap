@@ -217,6 +217,21 @@ form {
     position: relative;
     z-index: 2;
 }
+form a {
+    -webkit-transition-duration: 0.25s;
+    transition-duration: 0.25s;
+    color: white!important;
+}
+form a:hover {
+    color: #f3971a!important;
+
+}
+::-webkit-input-placeholder {
+    color:black!important
+}
+::-webkit-input-placeholder:hover {
+    color:white!important
+}
 form input {
     -webkit-appearance: none;
     -moz-appearance: none;
@@ -231,17 +246,22 @@ form input {
     display: block;
     text-align: center;
     font-size: 18px;
-    color: #abacae;
+    color: black;
     -webkit-transition-duration: 0.25s;
     transition-duration: 0.25s;
     font-weight: 300;
 }
 form input:hover {
-    background-color: rgba(255, 255, 255, 0.4);
+    /* background-color: rgba(255, 255, 255, 0.4); */
+    background-color: #f3971a!important;
+    color:white!important;
+    border-color: black;
+    outline: 0;
+    box-shadow: 0 0 0 0.4rem #5183b9;
 }
 form input:focus {
     background-color: white;
-    width: 95%;
+    width: 60%;
     color: #004275;
 }
 form button {
@@ -262,6 +282,10 @@ form button {
 }
 form button:hover {
     background-color: #f3971a;
+    border-color: black;
+    outline: 0;
+    color:white;
+    box-shadow: 0 0 0 0.4rem #5183b9;
 }
 form > a {
     display: block;
