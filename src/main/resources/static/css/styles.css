@@ -229,8 +229,8 @@ form a:hover {
 ::-webkit-input-placeholder {
     color:black!important
 }
-::-webkit-input-placeholder:hover {
-    color:white!important
+:focus::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+    color: white!important;
 }
 form input {
     -webkit-appearance: none;
