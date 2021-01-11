@@ -28,7 +28,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
         //         .passwordEncoder(new LdapShaPasswordEncoder())
         //         .passwordAttribute("userPassword");
 
-        // CODIGO QUE LEVANTA EL PROYECTO PERO NO FUNCIONA LOGIN
+        // CODIGO PARA LA CONEXION CON EL SERVIDOR LDAP, FUNCIONA CORRECTAMENTE EL LOGIN
         auth.ldapAuthentication()
             .userDetailsContextMapper(inetOrgPersonContextMapper())
             .userSearchFilter("(cn={0})")
