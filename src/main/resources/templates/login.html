@@ -10,15 +10,14 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
 
     <link rel="stylesheet" type="text/css" media="all" th:href="@{/css/styles.css}"/>
+    <script th:href="@{/js/jquery.js}"></script>
 
 </head>
 <body style="background-color:#00529c ;">
 
     <div class="row pull-left" style="width:200px; height:110px;">
         <img th:src="@{img/footer.png}" media="all" alt="Imagen Logo Arcor" class="img-fluid"/>
-    </div>
-
-    </div>
+    </div> 
     <div class="container-fluid">
         <div class="row form-inline">
             <div class="col-lg-6 col-md-4 d-none d-lg-block">
@@ -29,6 +28,7 @@
             </div>
             <div class="col-sm-10 col-lg-4 col-md-10" style="margin: 0px auto!important">
                 <div class="wrapper">
+                    
                     <h1 style="color: white;">Bienvenido</h1>
                     <!-- <form class="form" name="IDPLogin" enctype="application/x-www-form-urlencoded" method="POST"
                         action="https://idpa.webaccess.arcor.com/nidp/app/login?sid=0&sid=0" AUTOCOMPLETE="off"> -->
@@ -56,8 +56,10 @@
                             </div>
                         </div>
                     </form>
-                    <div class="error">
-        
+                    <div class="error" >
+                        <div id="error-message" class="alert alert-danger"  role="alert">
+                            El usuario o la contraseña fueron mal ingresados. Inténtelo de nuevo.
+                        </div>
                     </div>
                 </div>
             </div>
@@ -84,5 +86,25 @@
         </fieldset>
     </form>
 </div> -->
+
+
+<script type="text/javascript">
+        // oculto siempre el mensaje 
+        $("#error-message").hide();
+
+        // obtengo el parametro GET error
+        var urlPag = window.location.search.substring(1);
+        // verifico si el parametro GET obtenido es igual a error
+        if (urlPag == 'error'){
+
+            // muestro el mensaje de error
+            $("#error-message").show();
+            setTimeout( function(){
+                // oculto el mensaje de error despues de 5 segundos
+                $("#error-message").hide();
+            }, 5000);
+        } 
+    
+</script>
 </body>
 </html>
