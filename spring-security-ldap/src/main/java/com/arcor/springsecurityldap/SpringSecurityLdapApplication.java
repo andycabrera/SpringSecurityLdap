@@ -9,5 +9,5 @@ public class SpringSecurityLdapApplication{
 	public static void main(String[] args) {
 		SpringApplication.run(SpringSecurityLdapApplication.class, args);
 	}
-
+	
 }
