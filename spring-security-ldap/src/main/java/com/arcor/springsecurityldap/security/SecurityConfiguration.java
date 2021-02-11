@@ -7,8 +7,11 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.LdapShaPasswordEncoder;
 import org.springframework.security.ldap.userdetails.UserDetailsContextMapper;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 @EnableWebSecurity
 @Order(Ordered.HIGHEST_PRECEDENCE)
@@ -16,17 +19,6 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
     
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception{
-
-        // CODIGO FUNCIONAL PARA LOCALHOST
-        // auth.ldapAuthentication()
-        //         .userDnPatterns("uid={0},ou=people")
-        //         .groupSearchBase("ou=groups")
-        //         .contextSource()
-        //         .url("ldap://localhost:8389/dc=springframework,dc=org")
-        //         .and()
-        //         .passwordCompare()
-        //         .passwordEncoder(new LdapShaPasswordEncoder())
-        //         .passwordAttribute("userPassword");
 
         // CODIGO PARA LA CONEXION CON EL SERVIDOR LDAP, FUNCIONA CORRECTAMENTE EL LOGIN
         auth.ldapAuthentication()
@@ -50,13 +42,21 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
 
 	@Override
     protected void configure(HttpSecurity http) throws Exception{
-        http
-                .authorizeRequests()
+        
+		http.httpBasic().and().authorizeRequests().anyRequest().authenticated().and().csrf().disable();
+		
+		/*http.authorizeRequests()
                 .anyRequest().fullyAuthenticated()
                 .and()
                 .formLogin()
                 .loginPage("/login")
-                .permitAll();
+                .permitAll();*/
+    }
+	
+	 
+	@RequestMapping
+    public Authentication getAuth() {
+        return SecurityContextHolder.getContext().getAuthentication();
     }
 
     @Override
